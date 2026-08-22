@@ -45,21 +45,24 @@ function Header() {
             </li>
           </ul>
           </div>
-          <div className='relative text-[#737373] flex items-center gap-6 text-xl px-4'>
+          <div className='text-[#737373] flex items-center gap-6 text-xl px-4'>
             <FaSearch onClick={()=>setOpensearch(true)} className="hover:text-white duration-300"/>
-            
+            <div className='relative'>
             <FaShoppingBag onClick={()=>setOpencart(true)} className="hover:text-white duration-300"/>
               {basket.length > 0 && (
-                <span className="absolute -top-2 -right-0 bg-red-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
                   {basket.length}
                 </span>
               )}
+            </div>
             <FaBars onClick={()=>setOpenmenu(!openmenu)} className='sm:hidden block'/>
           </div>
-          <ul className={`fixed z-[999] w-70 h-screen bg-white left-full
-           top-0 flex flex-col py-20 px-5 sm:hidden gap-6 font-bold text-slate-900
-            ${openmenu ? 'translate-x-0' : '-translate-x-full'}
-               transition-transform duration-300`}>
+          <ul
+              className={`fixed z-[999] w-70 h-screen bg-white right-0 top-0
+              flex flex-col py-20 px-5 sm:hidden gap-6 font-bold text-slate-900
+              transition-transform duration-300
+              ${openmenu ? 'translate-x-0' : 'translate-x-full'}`}
+            >
             <FaXmark onClick={()=>setOpenmenu(!openmenu)} className='text-slate-900 text-2xl absolute top-7 right-7'/>
             <li>
               <Link to="/arrivals" className="hover:text-white duration-300">
