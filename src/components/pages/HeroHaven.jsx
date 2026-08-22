@@ -40,23 +40,17 @@ function HeroHaven() {
         {
         haven.slice(0,7).map((item)=>{
           const selectedSize = selectedsize[item.id] || item.sizes[0]
-          const price =
-              selectedSize === "02/M"
-              ? item.price + 20
-              : selectedSize === "03/L"
-              ? item.price + 30
-              : selectedSize === "04/XL"
-              ? item.price + 40
-              : item.price
           return(
         <SwiperSlide key={item.id} >
         <div className='px-3 sm:px-6'>
           <div className='group'>
             <div className="relative shadow-sm max-w-sm mt-6 overflow-hidden ">
+              <Link to={`/haven/${item.id}`} className="block w-full">
               <div className="relative w-full aspect-[3/4]">
                   <img src={item.image} className="absolute w-full h-full duration-500 group-hover:opacity-0" alt={item.title} />
                   <img src={item.hoverImage} className="absolute inset-0 w-full duration-500 opacity-0 group-hover:opacity-100" alt={item.title} />
               </div>
+              </Link>
 
 
             <div className='relative min-h-[130px]'>
@@ -80,7 +74,7 @@ function HeroHaven() {
                     ))}
                    
                   </select>
-                  <button onClick={()=>addBasket({...item,price:price},1,selectedsize[item.id] || item.sizes[0])}
+                  <button onClick={()=>addBasket(item,1,selectedsize[item.id] || item.sizes[0])}
                    className='w-full bg-black p-2 px-5 text-xs'>ADD TO CART</button>
               </div>
               </div>

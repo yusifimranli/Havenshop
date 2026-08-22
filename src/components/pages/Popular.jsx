@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react'
 import { DATA } from '../Context/DataContext'
 import { BASKET } from '../Context/BasketContext'
+import { Link } from 'react-router'
+
 
 
 function Popular() {
@@ -18,22 +20,16 @@ function Popular() {
       
       {
         popular.map((item)=>{
-          const selectedSize = selectedsize[item.id] || item.sizes[0]
-          const price =
-              selectedSize === "02/M"
-              ? item.price + 20
-              : selectedSize === "03/L"
-              ? item.price + 30
-              : selectedSize === "04/XL"
-              ? item.price + 40
-              : item.price
+          const selectedSize = selectedsize[item.id] || item.sizes[0] 
           return(
           <div className='group' key={item.id}>
             <div className="relative shadow-sm max-w-sm mt-6 overflow-hidden ">
+               <Link to={`/haven/${item.id}`} className="block w-full">
               <div className="relative w-full aspect-[3/4]">
                   <img src={item.image} className="absolute w-full h-full duration-500 group-hover:opacity-0" alt={item.title} />
                   <img src={item.hoverImage} className="absolute inset-0 w-full duration-500 opacity-0 group-hover:opacity-100" alt={item.title} />
               </div>
+              </Link>
 
             <div className='relative min-h-[160px]'>
               <div className="p-4 sm:p-5 duration-500 group-hover:opacity-0">
@@ -55,7 +51,7 @@ function Popular() {
                     ))}
                    
                   </select>
-                  <button onClick={()=>addBasket({...item,price:price},1,selectedsize[item.id] || item.sizes[0])}
+                  <button onClick={()=>addBasket(item,1,selectedsize[item.id] || item.sizes[0])}
                    className='w-full bg-black p-2 px-5 text-xs'>ADD TO CART</button>
               </div>
               </div>
