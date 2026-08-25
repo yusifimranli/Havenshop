@@ -3,9 +3,9 @@ import { FaSearch } from "react-icons/fa";
 import { FaShoppingBag } from "react-icons/fa";
 import { FaBars } from "react-icons/fa6";
 import { FaXmark } from "react-icons/fa6";
+import { NavLink } from 'react-router';
 import { Link } from 'react-router';
 import CartModal from './pages/CartModal';
-import CartBasket from './pages/CartBasket';
 import { BASKET } from './Context/BasketContext';
 import { DATA } from './Context/DataContext';
 function Header() {
@@ -24,24 +24,28 @@ function Header() {
             </Link>
             <ul className="hidden sm:flex items-center gap-6 text-sm font-medium text-[#737373]">
             <li>
-              <Link to="/arrivals" className="hover:text-white duration-300">
+              <NavLink to="/arrivals" className={({ isActive }) =>
+                isActive ? "text-white" : "text-[#737373] hover:text-white"}>
                 NEW ARRIVALS
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/haven" className="hover:text-white duration-300">
+              <NavLink to="/haven" className={({ isActive }) =>
+                isActive ? "text-white" : "text-[#737373] hover:text-white"}>
                 HAVEN
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/features" className="hover:text-white duration-300">
+              <NavLink to="/features" className={({ isActive }) =>
+                isActive ? "text-white" : "text-[#737373] hover:text-white"}>
                 FEATURES
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/news" className="hover:text-white duration-300">
+              <NavLink to="/news" className={({ isActive }) =>
+                isActive ? "text-white" : "text-[#737373] hover:text-white"}>
                 NEWS
-              </Link>
+              </NavLink>
             </li>
           </ul>
           </div>
@@ -65,22 +69,22 @@ function Header() {
             >
             <FaXmark onClick={()=>setOpenmenu(!openmenu)} className='text-slate-900 text-2xl absolute top-7 right-7'/>
             <li>
-              <Link to="/arrivals" className="hover:text-white duration-300">
+              <Link to="/arrivals" onClick={() => setMenuOpen(false)} className="hover:text-white duration-300">
                 NEW ARRIVALS
               </Link>
             </li>
             <li>
-              <Link to="/haven" className="hover:text-white duration-300">
+              <Link to="/haven" onClick={() => setMenuOpen(false)} className="hover:text-white duration-300">
                 HAVEN
               </Link>
             </li>
             <li>
-              <Link to="/features" className="hover:text-white duration-300">
+              <Link to="/features" onClick={() => setMenuOpen(false)} className="hover:text-white duration-300">
                 FEATURES
               </Link>
             </li>
             <li>
-              <Link to="/news" className="hover:text-white duration-300">
+              <Link to="/news" onClick={() => setMenuOpen(false)} className="hover:text-white duration-300">
                 NEWS
               </Link>
             </li>
@@ -89,19 +93,19 @@ function Header() {
        <CartModal basket={basket} opencart={opencart} setOpencart={setOpencart}/>
 
        {opensearch && (
-        <div className="fixed top-3 right-19 w-72 py-2 border border-[#737373] bg-black z-[1000] flex items-center px-2">
+        <div className="fixed top-3 right-4 w-86 sm:w-72 py-2 border border-[#737373] bg-black flex items-center px-2">
           <input
             autoFocus
             type="text"
             placeholder="Search"
             value={search}
-            onChange={(e)=>setSearch(e.target.value)}
+            onChange={(e) => setSearch(e.target.value)}
             className="bg-transparent outline-none text-white w-full text-base"
           />
 
           <FaXmark
             onClick={() => setOpensearch(false)}
-            className="text-[#737373] text-xl cursor-pointer hover:text-white duration-300"
+            className="text-[#737373] text-xl cursor-pointer hover:text-white duration-300 ml-2 shrink-0"
           />
         </div>
       )}

@@ -1,8 +1,6 @@
 import React, { useContext, useState } from 'react'
-import CartModal from './CartModal'
 import { DATA } from '../Context/DataContext'
 import { BASKET } from '../Context/BasketContext'
-import CartBasket from './CartBasket'
 import { Link } from 'react-router'
 
 

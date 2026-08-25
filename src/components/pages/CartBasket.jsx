@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React  from 'react'
 import { FaRegTrashCan } from "react-icons/fa6"
 import { BASKET } from '../Context/BasketContext'
 import { useContext } from 'react'
