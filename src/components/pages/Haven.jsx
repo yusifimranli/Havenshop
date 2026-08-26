@@ -1,13 +1,11 @@
 import React, { useContext, useState } from 'react'
-import CartModal from './CartModal'
 import { DATA } from '../Context/DataContext'
 import { BASKET } from '../Context/BasketContext'
-import CartBasket from './CartBasket'
 import { Link } from 'react-router'
 
 
 function Haven() {
-  const {haven,search}= useContext(DATA)
+  const {haven}= useContext(DATA)
   const {addBasket} = useContext(BASKET)
   const [selectedsize,setSelectedsize] = useState({})
   const categories = [
@@ -25,10 +23,6 @@ function Haven() {
     selectedcategory === "ALL"
       ? true
       : item.category === selectedcategory
-  )
-  .filter((item) =>
-    item.title.toLowerCase().includes(search.toLowerCase()) ||
-    item.brand?.toLowerCase().includes(search.toLowerCase())
   )
   return (
     <>

@@ -13,7 +13,15 @@ function Header() {
   const [opencart,setOpencart] = useState(false)
   const {basket} = useContext(BASKET)
   const [opensearch,setOpensearch] = useState(false)
-  const { search, setSearch } = useContext(DATA)
+  const { arrival, haven, search, setSearch } = useContext(DATA)
+  const allProducts = [
+  ...arrival.map(item => ({ ...item, type: "arrival" })),
+  ...haven.map(item => ({ ...item, type: "haven" }))
+  ]
+
+  const searchResults = allProducts.filter(item =>
+    item.title.toLowerCase().includes(search.toLowerCase())
+  )
   return (
     <>
     <header className="sticky top-0 z-[998] bg-black">
@@ -93,22 +101,99 @@ function Header() {
        <CartModal basket={basket} opencart={opencart} setOpencart={setOpencart}/>
 
        {opensearch && (
-        <div className="fixed top-3 right-4 w-86 sm:w-72 py-2 border border-[#737373] bg-black flex items-center px-2">
-          <input
-            autoFocus
-            type="text"
-            placeholder="Search"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="bg-transparent outline-none text-white w-full text-base"
-          />
+  <div className="fixed top-3 right-4 sm:right-10 w-[calc(100%-2rem)] sm:w-96 bg-white rounded-xl shadow-2xl border border-gray-200 z-[1000] overflow-hidden">
 
-          <FaXmark
-            onClick={() => setOpensearch(false)}
-            className="text-[#737373] text-xl cursor-pointer hover:text-white duration-300 ml-2 shrink-0"
-          />
-        </div>
-      )}
+    <div className="flex items-center px-4 py-3 border-b border-gray-200">
+
+      <FaSearch className="text-gray-400 text-sm mr-3" />
+
+      <input
+        autoFocus
+        type="text"
+        placeholder="Search products..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        className="bg-transparent outline-none text-black w-full text-sm placeholder:text-gray-400"
+      />
+
+      <FaXmark
+        onClick={() => {
+          setOpensearch(false)
+          setSearch("")
+        }}
+        className="text-gray-400 text-lg cursor-pointer hover:text-black duration-300"
+      />
+
+    </div>
+
+    {search && (
+      <div className="max-h-100 overflow-y-auto">
+
+        {searchResults.length === 0 ? (
+          <div className="py-10 text-center">
+            <p className="text-gray-500 text-sm">
+              No products found
+            </p>
+          </div>
+        ) : (
+          <div className="p-2">
+
+            {searchResults.map((item) => (
+              <Link
+                key={`${item.type}-${item.id}`}
+                to={
+                  item.type === "haven"
+                    ? `/haven/${item.id}`
+                    : `/arrivals/${item.id}`
+                }
+                onClick={() => {
+                  setOpensearch(false)
+                  setSearch("")
+                }}
+                className="flex items-center gap-4 p-3 rounded-lg hover:bg-gray-100 duration-200"
+              >
+
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-14 h-16 object-cover rounded-md"
+                />
+
+                <div className="flex-1">
+
+                  <p className="text-[10px] text-gray-400 uppercase tracking-wider">
+                    {item.type}
+                  </p>
+
+                  <p className="text-sm font-medium text-gray-900 mt-1">
+                    {item.title}
+                  </p>
+
+                  <p className="text-sm font-semibold text-black mt-1">
+                    ${item.price}
+                  </p>
+
+                </div>
+
+              </Link>
+            ))}
+
+          </div>
+        )}
+
+      </div>
+    )}
+
+    {!search && (
+      <div className="px-5 py-6">
+        <p className="text-xs text-gray-400">
+          Search for products from HAVEN and New Arrivals
+        </p>
+      </div>
+    )}
+
+  </div>
+)}
     </header>
     </>
   )
