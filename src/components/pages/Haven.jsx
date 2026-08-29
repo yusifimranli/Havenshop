@@ -71,7 +71,7 @@ function Haven() {
 
             <div className='relative min-h-[160px]'>
               <div className="p-4 sm:p-5 duration-500 group-hover:opacity-0">
-                  <h3 className="text-slate-900 text-base font-semibold">HAVEN</h3>
+                  <h3 className="text-slate-900 text-base font-semibold">{item.brand}</h3>
                   <p className="mt-2 text-xs text-slate-900 leading-relaxed">{item.title}</p>
                   <p className="mt-2 text-sm text-slate-900 font-bold  leading-relaxed">${item.price}</p>
               </div>

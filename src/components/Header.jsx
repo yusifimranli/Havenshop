@@ -19,9 +19,10 @@ function Header() {
   ...haven.map(item => ({ ...item, type: "haven" }))
   ]
 
-  const searchResults = allProducts.filter(item =>
-    item.title.toLowerCase().includes(search.toLowerCase())
-  )
+  const searchResults = allProducts.filter((item) =>
+  item.title?.toLowerCase().includes(search.toLowerCase()) ||
+  item.brand?.toLowerCase().includes(search.toLowerCase())
+)
   return (
     <>
     <header className="sticky top-0 z-[998] bg-black">
@@ -140,9 +141,9 @@ function Header() {
 
             {searchResults.map((item) => (
               <Link
-                key={`${item.type}-${item.id}`}
+                key={`${item.brand}-${item.id}`}
                 to={
-                  item.type === "haven"
+                  item.brand === "haven"
                     ? `/haven/${item.id}`
                     : `/arrivals/${item.id}`
                 }
@@ -162,7 +163,7 @@ function Header() {
                 <div className="flex-1">
 
                   <p className="text-[10px] text-gray-400 uppercase tracking-wider">
-                    {item.type}
+                    {item.brand}
                   </p>
 
                   <p className="text-sm font-medium text-gray-900 mt-1">
