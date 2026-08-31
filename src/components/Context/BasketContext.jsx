@@ -57,9 +57,12 @@ function BasketContext({children}) {
             })
         )
         }
+    function clearBasket() {
+    setBasket([])
+    }
     return (
     <>
-    <BASKET.Provider value={{ basket, addBasket,removeBasket,increase,decrease }}>
+    <BASKET.Provider value={{ basket, addBasket,removeBasket,increase,decrease,clearBasket }}>
         {children}
     </BASKET.Provider>
     </>
