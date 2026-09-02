@@ -11,7 +11,7 @@ function BasketContext({children}) {
                 basket.map((product)=>{
                     if(product.id ===item.id){
                         return {
-                            ...product,quantity: quantity,price:item.price,selectedsize:selectedsize
+                            ...product,quantity: quantity,selectedsize:selectedsize
                         }
                     }
                     return product
