@@ -20,7 +20,6 @@ function Popular() {
       
       {
         popular.map((item)=>{
-          const selectedSize = selectedsize[item.id] || item.sizes[0] 
           return(
           <div className='group' key={item.id}>
             <div className="relative shadow-sm max-w-sm mt-6 overflow-hidden ">

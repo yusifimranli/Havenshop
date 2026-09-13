@@ -13,7 +13,7 @@ function Home() {
   return (
     <>
     <main>
-        {/* Mobile hero*/}
+
         <section className="relative sm:hidden block h-screen bg-cover bg-center" style={{ backgroundImage: `url(${Hero})` }}>
             <div className="absolute bottom-10 left-6 text-white">
                 <h3 className="text-3xl font-bold">
@@ -26,7 +26,7 @@ function Home() {
             </div>
         </section>
 
-        {/* Desktop hero*/}
+      
         <section className="relative hidden sm:block h-screen bg-cover bg-center" style={{ backgroundImage: `url(${Hero2})` }}>
             <div className="absolute bottom-10 left-6 p-10 text-white">
                 <h3 className="text-4xl font-bold">
@@ -39,12 +39,11 @@ function Home() {
             </div>
         </section>
 
-        {/* HeroHaven Section */}
         <HeroHaven/>
 
-        {/* Slider section */}
+  
         <Slider/>
-        {/* New Arrivals */}
+       
         <section className="relative  h-screen bg-cover bg-center" style={{ backgroundImage: `url(${Arriwals})` }}>
             <div className="absolute bottom-10 left-6 sm:p-10 text-white">
                 <h3 className="text-3xl sm:text-4xl font-bold">
@@ -56,9 +55,9 @@ function Home() {
                 </Link>
             </div>
         </section>
-        {/* Popular */}
+       
         <Popular/>
-        {/* Subscribe */}
+        
         <Subscribe/>
     </main>
     

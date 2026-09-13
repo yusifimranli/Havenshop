@@ -4,7 +4,7 @@ import { BASKET } from '../Context/BasketContext'
 import { useContext } from 'react'
 
 function CartBasket({setOpencart}) {
-  const { basket,removeBasket ,decrease,increase,selectedsize} = useContext(BASKET)
+  const { basket,removeBasket ,decrease,increase} = useContext(BASKET)
 
   return (
     <div className="flex flex-col gap-5 py-5">

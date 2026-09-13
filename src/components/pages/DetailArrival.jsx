@@ -8,13 +8,13 @@
             const {addBasket} = useContext(BASKET)
             const {id}  = useParams()
             const item = arrival.find((product) => product.id.toString() === id)
-            const [selectedsize,setSelectedsize] = useState(item.sizes[0])
+            const [selectedsize, setSelectedsize] = useState(item?.sizes?.[0] || '')
             if (!item) {
             return (
-                <p className="p-10 text-center text-white bg-black">
+               <p className="p-10 text-center text-white bg-black">
                     Product not found
                 </p>
-            )
+            ) 
         }
         
             

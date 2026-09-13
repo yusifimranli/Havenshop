@@ -19,8 +19,7 @@ function BasketContext({children}) {
             )
         }
         else{
-            if (quantity === 0) return
-        setBasket([...basket, {...item,quantity: quantity,selectedsize:selectedsize}])
+            setBasket([...basket, {...item,quantity: quantity,selectedsize:selectedsize}])
     }
     }   
     function removeBasket(id) {
@@ -37,8 +36,8 @@ function BasketContext({children}) {
                 quantity: item.quantity - 1 
                 }
             }
-
             return item
+
             })
             .filter((item)=>item.quantity>0)
         )
@@ -58,7 +57,7 @@ function BasketContext({children}) {
         )
         }
     function clearBasket() {
-    setBasket([])
+        setBasket([])
     }
     return (
     <>

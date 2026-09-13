@@ -39,7 +39,6 @@ function HeroHaven() {
         
         {
         haven.slice(0,7).map((item)=>{
-          const selectedSize = selectedsize[item.id] || item.sizes[0]
           return(
         <SwiperSlide key={item.id} >
         <div className='px-3 sm:px-6'>

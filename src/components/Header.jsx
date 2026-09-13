@@ -15,9 +15,9 @@ function Header() {
   const [opensearch,setOpensearch] = useState(false)
   const { arrival, haven, search, setSearch } = useContext(DATA)
   const allProducts = [
-  ...arrival.map(item => ({ ...item, type: "arrival" })),
-  ...haven.map(item => ({ ...item, type: "haven" }))
-  ]
+  ...arrival,
+  ...haven
+]
 
   const searchResults = allProducts.filter((item) =>
   item.title?.toLowerCase().includes(search.toLowerCase()) ||
@@ -78,22 +78,22 @@ function Header() {
             >
             <FaXmark onClick={()=>setOpenmenu(!openmenu)} className='text-slate-900 text-2xl absolute top-7 right-7'/>
             <li>
-              <Link to="/arrivals" onClick={() => setMenuOpen(false)} className="hover:text-white duration-300">
+              <Link to="/arrivals" onClick={() => setOpenmenu(false)} className="hover:text-white duration-300">
                 NEW ARRIVALS
               </Link>
             </li>
             <li>
-              <Link to="/haven" onClick={() => setMenuOpen(false)} className="hover:text-white duration-300">
+              <Link to="/haven" onClick={() => setOpenmenu(false)} className="hover:text-white duration-300">
                 HAVEN
               </Link>
             </li>
             <li>
-              <Link to="/features" onClick={() => setMenuOpen(false)} className="hover:text-white duration-300">
+              <Link to="/features" onClick={() => setOpenmenu(false)} className="hover:text-white duration-300">
                 FEATURES
               </Link>
             </li>
             <li>
-              <Link to="/news" onClick={() => setMenuOpen(false)} className="hover:text-white duration-300">
+              <Link to="/news" onClick={() => setOpenmenu(false)} className="hover:text-white duration-300">
                 NEWS
               </Link>
             </li>
@@ -143,7 +143,7 @@ function Header() {
               <Link
                 key={`${item.brand}-${item.id}`}
                 to={
-                  item.brand === "haven"
+                  item.brand?.toLowerCase() === "haven"
                     ? `/haven/${item.id}`
                     : `/arrivals/${item.id}`
                 }

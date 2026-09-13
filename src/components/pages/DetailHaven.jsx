@@ -8,15 +8,16 @@
         const {addBasket} = useContext(BASKET)
         const {id}  = useParams()
         const item = haven.find((product) => product.id.toString() === id)
+
+        const [selectedsize, setSelectedsize] = useState(item?.sizes?.[0] || '')
+
         if (!item) {
-        return (
-            <p className="p-10 text-center text-white bg-black">
-                Product not found
-            </p>
-        )
-    }
-        
-        const [selectedsize,setSelectedsize] = useState(item.sizes[0])
+            return (
+                <p className="p-10 text-center text-white bg-black">
+                    Product not found
+                </p>
+            )
+        }
         
           
     return (  
@@ -88,31 +89,31 @@
 
       <hr className="my-6 border-slate-300" />
       {item.colorVariants && (
-  <fieldset>
-    <legend className="text-lg font-semibold text-slate-900">
-      Colors
-    </legend>
+      <fieldset>
+        <legend className="text-lg font-semibold text-slate-900">
+          Colors
+        </legend>
 
-    <div className="flex flex-wrap gap-3 mt-4">
-      {item.colorVariants.map((color) => (
-        <Link
-          key={color.id}
-          to={`/haven/${color.id}`}
-          className={`w-20 h-20 border-2 ${
-            item.id === color.id
-              ? "border-black"
-              : "border-slate-300"
-          }`}
-        >
-          <img
-            src={color.image}
-            alt="Product color"
-            className="w-full h-full object-cover"
-          />
-        </Link>
-      ))}
-    </div>
-  </fieldset>
+        <div className="flex flex-wrap gap-3 mt-4">
+          {item.colorVariants.map((color) => (
+            <Link
+              key={color.id}
+              to={`/haven/${color.id}`}
+              className={`w-20 h-20 border-2 ${
+                item.id === color.id
+                  ? "border-black"
+                  : "border-slate-300"
+              }`}
+            >
+              <img
+                src={color.image}
+                alt="Product color"
+                className="w-full h-full object-cover"
+              />
+            </Link>
+          ))}
+        </div>
+      </fieldset>
 )}
 
       <hr className="my-6 border-slate-300" />

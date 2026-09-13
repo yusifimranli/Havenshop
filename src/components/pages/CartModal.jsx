@@ -42,7 +42,7 @@ function CartModal({basket,opencart,setOpencart}) {
         basket.length > 0 ?(
           <>
            <div className='flex-1 overflow-y-auto'>
-            <CartBasket />
+            <CartBasket setOpencart={setOpencart} />
           </div>
           <div className='border-t border-slate-200 pt-5 mt-5'>
             <div className='flex items-center justify-between'>
