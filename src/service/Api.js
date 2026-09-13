@@ -1,28 +1,29 @@
-import axios from "axios";
-
 async function getArrival() {
-  const res = await axios.get(
+  const res = await fetch(
     "https://haven-api-jet.vercel.app/api/newarrival"
   );
-  return res.data;
-}
-async function getHaven() {
-  const res = await axios.get(
-    "https://haven-api-jet.vercel.app/api/haven"
-  );
-  return res.data;
-}
-async function getFeatures() {
-  const res = await axios.get(
-    "https://haven-api-jet.vercel.app/api/features"
-  );
-  return res.data;
-}
-async function getNews() {
-  const res = await axios.get(
-    "https://haven-api-jet.vercel.app/api/news"
-  );
-  return res.data;
+  return res.json();
 }
 
-export { getArrival,getHaven,getFeatures,getNews }; 
+async function getHaven() {
+  const res = await fetch(
+    "https://haven-api-jet.vercel.app/api/haven"
+  );
+  return res.json();
+}
+
+async function getFeatures() {
+  const res = await fetch(
+    "https://haven-api-jet.vercel.app/api/features"
+  );
+  return res.json();
+}
+
+async function getNews() {
+  const res = await fetch(
+    "https://haven-api-jet.vercel.app/api/news"
+  );
+  return res.json();
+}
+
+export { getArrival, getHaven, getFeatures, getNews };

@@ -1,8 +1,16 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 
 export const BASKET = createContext()
+
 function BasketContext({children}) {
-    const [basket,setBasket] = useState([])
+    const [basket, setBasket] = useState(() => {
+        const savedBasket = localStorage.getItem('basket')
+        return savedBasket ? JSON.parse(savedBasket) : []
+    })
+
+    useEffect(() => {
+        localStorage.setItem('basket', JSON.stringify(basket))
+    }, [basket])
 
     function addBasket(item,quantity,selectedsize){  
         const exist = basket.find((product)=>product.id === item.id) 
